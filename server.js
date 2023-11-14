@@ -18,11 +18,13 @@ mongoose.connection.on('connected', () => {
 
 app.use(cors(
     {
-        origin: ["https://mern-attendance-client.vercel.app/"],
+        origin: ["https://mern-attendance-client.vercel.app/","localhost:3000"],
         methods: ["POST", "GET"],
         credentials: true
     }
 ));
+
+// app.use(cors())
 
 app.get("/", (req, res) => {
   res.json("Hello");
