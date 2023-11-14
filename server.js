@@ -17,11 +17,11 @@ mongoose.connection.on('connected', () => {
 });
 
 app.use(cors(
-  {
-      origin: [""],
-      methods: ["POST", "GET"],
-      credentials: true
-  }
+    {
+        origin: ["https://deploy-mern-frontend.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
 ));
 
 // Example route to fetch all "subjects" from the "subjects" collection
