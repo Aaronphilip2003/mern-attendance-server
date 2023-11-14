@@ -18,7 +18,7 @@ mongoose.connection.on('connected', () => {
 
 app.use(cors(
     {
-        origin: ["https://deploy-mern-frontend.vercel.app"],
+        origin: ["https://mern-attendance-client.vercel.app/"],
         methods: ["POST", "GET"],
         credentials: true
     }
