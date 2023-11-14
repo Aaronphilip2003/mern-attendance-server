@@ -24,6 +24,10 @@ app.use(cors(
     }
 ));
 
+app.get("/", (req, res) => {
+  res.json("Hello");
+})
+
 // Example route to fetch all "subjects" from the "subjects" collection
 app.get('/subjects', async (req, res) => {
     try {
