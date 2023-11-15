@@ -7,6 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const atlasConnectionUri = 'mongodb+srv://aaronphilip2003:Aaron123@cluster0.qhmzihy.mongodb.net/?retryWrites=true&w=majority';
+const dbName="subjects";
 
 mongoose.connect(atlasConnectionUri, {
     dbName: 'subjects'
@@ -31,7 +32,8 @@ app.get("/", (req, res) => {
 })
 
 // Example route to fetch all "subjects" from the "subjects" collection
-app.get('/subjects', async (req, res) => {
+mongoose.connection.on('connected', () => {
+  app.get('/subjects', async (req, res) => {
     try {
       const db = mongoose.connection.db;
       const subjectsCollection = db.collection('subjects');
@@ -42,6 +44,7 @@ app.get('/subjects', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+});
 
 app.get('/getattendance', async (req, res) => {
   try {
