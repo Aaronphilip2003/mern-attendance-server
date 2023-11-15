@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const Attendance = require('./attendanceSchema'); // Adjust the path as per your project structure
+const AttendanceModel = require('./attendanceSchema'); // Adjust the path as per your project structure
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -12,6 +12,7 @@ const dbName = "subjects";
 mongoose.connect(atlasConnectionUri, {
   dbName: 'subjects'
 });
+
 
 mongoose.connection.on('connected', () => {
   console.log('Connected to MongoDB Atlas');
@@ -63,7 +64,7 @@ mongoose.connection.on('connected', () => {
       const attended = req.params.attendance;
 
       // Find the attendance record for the subject
-      let attendanceRecord = await Attendance.findOne({ subject_name: subjectName });
+      let attendanceRecord = await AttendanceModel.findOne({ subject_name: subjectName });
 
       // If the record doesn't exist, create a new one
       if (!attendanceRecord) {
@@ -104,7 +105,7 @@ mongoose.connection.on('connected', () => {
       const attended = req.params.attendance;
 
       // Find the attendance record for the subject
-      let attendanceRecord = await Attendance.findOne({ subject_name: subjectName });
+      let attendanceRecord = await AttendanceModel.findOne({ subject_name: subjectName });
 
       // If the record doesn't exist, create a new one
       if (!attendanceRecord) {
@@ -138,10 +139,6 @@ mongoose.connection.on('connected', () => {
     }
   });
 
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
-
 });
 
 mongoose.connection.on('error', (err) => {
@@ -151,3 +148,9 @@ mongoose.connection.on('error', (err) => {
 mongoose.connection.on('disconnected', () => {
   console.log('MongoDB disconnected');
 });
+
+const server=app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+module.exports = server;
