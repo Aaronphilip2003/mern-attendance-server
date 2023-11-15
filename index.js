@@ -18,15 +18,17 @@ mongoose.connection.on('connected', () => {
 
   // Set up routes only after the MongoDB connection is established
 
+  app.get("/", (req, res) => {
+    res.json("Hello");
+  });
+
+
   app.use(cors({
     origin: ["https://mern-attendance-client.vercel.app", "localhost:3000"],
     methods: ["POST", "GET"],
     credentials: true
   }));
 
-  app.get("/", (req, res) => {
-    res.json("Hello");
-  });
 
   // Example route to fetch all "subjects" from the "subjects" collection
   app.get('/subjects', async (req, res) => {
