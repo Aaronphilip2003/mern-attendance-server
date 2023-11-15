@@ -16,15 +16,15 @@ mongoose.connection.on('connected', () => {
   console.log('Connected to MongoDB Atlas');
 });
 
-// app.use(cors(
-//     {
-//         origin: ["https://mern-attendance-client.vercel.app","localhost:3000"],
-//         methods: ["POST", "GET"],
-//         credentials: true
-//     }
-// ));
+app.use(cors(
+    {
+        origin: ["https://mern-attendance-client.vercel.app","localhost:3000"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 
-app.use(cors())
+// app.use(cors())
 
 app.get("/", (req, res) => {
   res.json("Hello");
