@@ -13,7 +13,6 @@ mongoose.connect(atlasConnectionUri, {
   dbName: 'subjects'
 });
 
-
 mongoose.connection.on('connected', () => {
   console.log('Connected to MongoDB Atlas');
 
@@ -139,6 +138,10 @@ mongoose.connection.on('connected', () => {
     }
   });
 
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+
 });
 
 mongoose.connection.on('error', (err) => {
@@ -148,9 +151,3 @@ mongoose.connection.on('error', (err) => {
 mongoose.connection.on('disconnected', () => {
   console.log('MongoDB disconnected');
 });
-
-const server=app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-module.exports = server;
